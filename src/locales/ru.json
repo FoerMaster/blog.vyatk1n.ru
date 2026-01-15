@@ -1,0 +1,15 @@
+{
+    "search": "Поиск",
+    "searchNoResult": "Ничего не найдено",
+    "searchPlaceholder": "Поиск документации…",
+    "toc": "На этой странице",
+    "tocNoHeadings": "Нет заголовков",
+    "lastUpdated": "Последнее обновление",
+    "chooseLanguage": "Выбрать язык",
+    "chooseTheme": "Тема",
+    "editOnGithub": "Редактировать на GitHub",
+    "onThisPage": "На этой странице",
+    "nextPage": "Далее",
+    "previousPage": "Назад",
+    "notFound": "Страница не найдена"
+}

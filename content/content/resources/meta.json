@@ -1,0 +1,7 @@
+{
+    "title": "Ресурсы",
+    "icon": "FolderOpen",
+    "description": "Описание корневой папки (необязательно)",
+    "root": true,
+    "accent": "indigo"
+}
