@@ -64,7 +64,7 @@ export async function generateMetadata(props: PageProps<'/content/[[...slug]]'>)
   if (!page) notFound();
 
   return {
-    title: page.data.title,
+    title: `${page.data.title} | VYATK1N Блог`,
     description: page.data.description,
     openGraph: {
       images: getPageImage(page).url,
