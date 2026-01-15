@@ -5,6 +5,12 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  routeRules: {
+    '/': {
+      redirect: '/content/blog' // или 'https://example.com'
+    },
+    // Другие правила
+  },
   async rewrites() {
     return [
       {
