@@ -9,7 +9,6 @@ const config = {
     '/': {
       redirect: '/content/blog' // или 'https://example.com'
     },
-    // Другие правила
   },
   async rewrites() {
     return [
