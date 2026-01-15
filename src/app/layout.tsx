@@ -1,4 +1,5 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
+import { Analytics } from '@vercel/analytics/next';
 import './global.css';
 import { Inter } from 'next/font/google';
 import ruTranslations from '@/locales/ru.json';
@@ -20,6 +21,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
         >
           {children}
         </RootProvider>
+        <Analytics />
       </body>
     </html>
   );
