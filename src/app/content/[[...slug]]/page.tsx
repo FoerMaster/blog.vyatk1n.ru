@@ -6,12 +6,21 @@ import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
 
-export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
+const WORDS_PER_MINUTE = 200;
+
+function getReadingTimeMinutes(text: string) {
+  const words = text.match(/\p{L}+/gu)?.length ?? 0;
+  return Math.max(1, Math.ceil(words / WORDS_PER_MINUTE));
+}
+
+export default async function Page(props: PageProps<'/content/[[...slug]]'>) {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
   const MDX = page.data.body;
+  const text = await page.data.getText('processed');
+  const readingTime = getReadingTimeMinutes(text);
   const gitConfig = {
     user: 'username',
     repo: 'repo',
@@ -27,8 +36,11 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
         <ViewOptions
           markdownUrl={`${page.url}.mdx`}
           // update it to match your repo
-          githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/docs/content/docs/${page.path}`}
+          githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/docs/content/content/${page.path}`}
         />
+        <span className="text-sm text-fd-muted-foreground">
+          Время чтения: {readingTime} мин
+        </span>
       </div>
       <DocsBody>
         <MDX
@@ -46,7 +58,7 @@ export async function generateStaticParams() {
   return source.generateParams();
 }
 
-export async function generateMetadata(props: PageProps<'/docs/[[...slug]]'>): Promise<Metadata> {
+export async function generateMetadata(props: PageProps<'/content/[[...slug]]'>): Promise<Metadata> {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
