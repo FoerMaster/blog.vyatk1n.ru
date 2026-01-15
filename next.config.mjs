@@ -5,10 +5,14 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
-  routeRules: {
-    '/': {
-      redirect: '/content/blog' // или 'https://example.com'
-    },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/content/blog',
+        permanent: true,
+      },
+    ]
   },
   async rewrites() {
     return [
