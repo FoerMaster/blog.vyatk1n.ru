@@ -1,13 +1,16 @@
 import { getPageImage, source } from '@/lib/source';
 import { notFound } from 'next/navigation';
-import { ImageResponse } from 'next/og';
+import { ImageResponse } from '@takumi-rs/image-response';
 import { generate as DefaultImage } from 'fumadocs-ui/og';
 
 export const revalidate = false;
 
-export async function GET(_req: Request, { params }: RouteContext<'/og/docs/[...slug]'>) {
-  const { slug } = await params;
-  const page = source.getPage(slug.slice(0, -1));
+// @ts-ignore
+export async function GET(_req: Request, { params }: RouteContext<'/og/content/[...slug]'>) {
+  // @ts-ignore
+    const { slug } = await params;
+    const encodedSlug = slug.map(encodeURIComponent).slice(0, -1);
+    const page = source.getPage(encodedSlug);
   if (!page) notFound();
 
   return new ImageResponse(
@@ -15,6 +18,7 @@ export async function GET(_req: Request, { params }: RouteContext<'/og/docs/[...
     {
       width: 1200,
       height: 630,
+        format: 'webp'
     },
   );
 }

@@ -3,8 +3,10 @@ import { notFound } from 'next/navigation';
 
 export const revalidate = false;
 
-export async function GET(_req: Request, { params }: RouteContext<'/llms.mdx/docs/[[...slug]]'>) {
-  const { slug } = await params;
+// @ts-ignore
+export async function GET(_req: Request, { params }: RouteContext<'/llms.mdx/content/[[...slug]]'>) {
+  // @ts-ignore
+    const { slug } = await params;
   const page = source.getPage(slug);
   if (!page) notFound();
 
