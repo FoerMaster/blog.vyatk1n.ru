@@ -7,7 +7,7 @@
     "dev": "next dev",
     "start": "next start",
     "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
-    "postinstall": "fumadocs-mdx"
+    "postinstall": "npx fumadocs-mdx"
   },
   "dependencies": {
     "@takumi-rs/image-response": "^0.62.8",
