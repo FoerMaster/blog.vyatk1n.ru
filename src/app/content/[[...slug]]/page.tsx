@@ -5,6 +5,7 @@ import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
+import {PageEffects} from "@/components/page-effects";
 
 const WORDS_PER_MINUTE = 200;
 
@@ -22,23 +23,23 @@ export default async function Page(props: PageProps<'/content/[[...slug]]'>) {
   const text = await page.data.getText('processed');
   const readingTime = getReadingTimeMinutes(text);
   const gitConfig = {
-    user: 'username',
-    repo: 'repo',
+    user: 'FoerMaster',
+    repo: 'blog.vyatk1n.ru',
     branch: 'main',
   };
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
+
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
       <div className="flex flex-row gap-2 items-center border-b pb-6">
-        <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
         <ViewOptions
           markdownUrl={`${page.url}.mdx`}
           // update it to match your repo
           githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/docs/content/content/${page.path}`}
         />
-        <span className="text-sm text-fd-muted-foreground">
+        <span className="text-sm text-fd-muted-foreground border flex flex-row items-center px-2 rounded h-8">
           Время чтения: {readingTime} мин
         </span>
       </div>

@@ -7,7 +7,8 @@ export const revalidate = false;
 export async function GET(_req: Request, { params }: RouteContext<'/llms.mdx/content/[[...slug]]'>) {
   // @ts-ignore
     const { slug } = await params;
-  const page = source.getPage(slug);
+    const encodedSlug = slug?.map(encodeURIComponent);
+  const page = source.getPage(encodedSlug);
   if (!page) notFound();
 
   return new Response(await getLLMText(page), {
