@@ -4,8 +4,9 @@ import { notFound } from 'next/navigation';
 import { getMDXComponents } from '@/mdx-components';
 import type { Metadata } from 'next';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { LLMCopyButton, ViewOptions } from '@/components/ai/page-actions';
-import {PageEffects} from "@/components/page-effects";
+import { ViewOptions } from '@/components/ai/page-actions';
+import Giscus from '@giscus/react';
+import DiscusBlock from "@/components/discus";
 
 const WORDS_PER_MINUTE = 200;
 
@@ -50,6 +51,7 @@ export default async function Page(props: PageProps<'/content/[[...slug]]'>) {
             a: createRelativeLink(source, page),
           })}
         />
+        <DiscusBlock />
       </DocsBody>
     </DocsPage>
   );

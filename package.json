@@ -10,6 +10,7 @@
     "postinstall": "npx fumadocs-mdx"
   },
   "dependencies": {
+    "@giscus/react": "^3.1.0",
     "@takumi-rs/image-response": "^0.62.8",
     "@vercel/analytics": "^1.6.1",
     "fumadocs-core": "16.4.7",
